@@ -1,0 +1,6 @@
+.show-comment {
+    display: flex;
+}
+.hidden-comment {
+    display: none;
+}

@@ -1,0 +1,13 @@
+.cart_count {
+    top: 15%;
+    left: 95%;
+}
+.shape-count {
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
