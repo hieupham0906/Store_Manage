@@ -1,0 +1,12 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+    <div>
+        {% for product in products%}
+            <div>
+                <h5>{{product.id}}--{{product.name}}-- {{product.color}} --{{product.material}} -- {{product.price}} </h5>
+                <img src="{% static 'image/somi.jpg' %}" alt="{{ product.name }}">
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
