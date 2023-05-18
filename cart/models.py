@@ -1,11 +1,11 @@
+from django.contrib.auth.models import User
 from django.db import models
 
-from account.models import Customer
 from products.models import Product
 
 class Order(models.Model):
     id = models.BigAutoField(primary_key=True)
-    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True)
+    customer = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)
     date = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):

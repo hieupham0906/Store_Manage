@@ -43,14 +43,27 @@
                 <li><a class="dropdown-item" href="#">Something else here</a></li>
               </ul>
             </li>
-            <li class="nav-item">
-              <a class="nav-link disabled">Disabled</a>
-            </li>
+            <div class="form-inline my-2 my-lg-0">
+              <a href="{% url 'cart_home' %}"> <img id="cart-icon" src='static/image/cart.png'></a>
+              <p id="cart-total">{{cartItems}}</p>
+            </div>
+
+            <div class="form-inline my-2 my-lg-0" style="visibility: {{user_login}}">
+              <span>hello {{request.user}}!</span>
+              <span><a href="{% url 'logout'%}">Thoát</a></span>
+            </div>
+            <div class="form-inline my-2 my-lg-0" style="visibility: {{user_not_login}}">
+
+              <a class="nav-link" href="{% url 'login' %}">Đăng nhập</a>
+              <a class="nav-link" href="{% url 'register' %}">Đăng kí</a>
+            </div>
           </ul>
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <form class="d-flex" method="POST" role="search" action="{%url 'search'%}">
+            {%csrf_token%}
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searched">
             <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
+         
         </div>
       </div>
     </nav>

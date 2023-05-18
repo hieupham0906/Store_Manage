@@ -1,9 +1,36 @@
-console.log("ahiih")
+console.log("ngoai")
 var updateBtns = document.getElementsByClassName('update-cart')
 for(i=0; i < updateBtns.length; i++){
     updateBtns[i].addEventListener('click', function(){
-        var proId = this.dataset.product
+        var productId = this.dataset.product
         var action = this.dataset.action
-        console.log('prid: ' + proId + ' action: ' + action)
+        console.log('prid: ' + productId + ' action: ' + action)
+        console.log('user: ', user)
+        if(user === "AnonymousUser"){
+            console.log('user not logged')
+        }
+        else{
+            updateUserOrder(productId,action)
+        }
+    })
+}
+
+function updateUserOrder(productId, action){
+    console.log('user logged in, success add')
+    var url = '/checkout/update_item'
+    fetch(url,{
+        method:'POST',
+        headers:{
+            'Content-Type' : 'application/json',
+            'X-CSRFToken': csrftoken,
+        },
+        body: JSON.stringify({'productId':productId , 'action':action})
+    })
+    .then((response) =>{
+        return response.json()
+    })
+    .then((data) =>{
+        console.log('data111', data)
+        location.reload()
     })
 }

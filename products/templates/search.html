@@ -1,0 +1,27 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+    <h5>result for search {{searched}}</h5>
+    {% for key in keys %}
+    {{key}}
+    {% endfor %}
+
+<div class="row"> 
+    {% for product in keys%}
+
+  <div class="col-lg-3">
+      <!-- <img src="{% static 'image/somi.jpg' %}" alt="{{ product.name }}"> -->
+      <img  width="200px" height="300px" src="{{  product.image.url }}" alt="{{ product.name }}">
+      <div class="box-element product">
+          <h6><strong>{{product.name}}</strong></h6>
+          <!-- <hr> -->
+
+          <button data-product={{product.id}} data-action= "add" class="btn btn-outline-secondary add-btn update-cart"> Thêm vào giỏ hàng</button>
+          <a class="btn btn-outline-success" href="#">Xem</a>
+          <h4 style="display: inline-block; float: right"><strong>{{product.price}} VND</strong></h4>
+      </div>
+     
+  </div>
+  {% endfor%}
+</div>
+{% endblock %}
