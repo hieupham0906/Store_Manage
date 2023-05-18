@@ -4,6 +4,20 @@ from django.shortcuts import render
 from cart.models import Order, OrderDetail
 
 from .models import *
+def category(request):
+    if request.user.is_authenticated:
+        user_not_login = "hidden"
+        user_login = "show"
+    else:
+        
+        user_not_login = "show"
+        user_login = "hidden"
+    categories = Category.objects.all
+    active_category = request.GET.get('category', '')
+    if active_category:
+        products = Product.objects.filter(category_id__name= active_category)
+    context = {'user_not_login':user_not_login,'user_login':user_login,'active_category':active_category,'products':products, 'active_category':active_category}
+    return render(request,'category.html',context) 
 def search(request):
     if request.method == "POST":
         searched = request.POST["searched"]
@@ -18,11 +32,11 @@ def search(request):
     else:
         items=[]
         order={'order.get_cart_items' :0, 'order.get_cart_total' : 0}
-        cartItems = order['get_cart_items']
+        cartItems = 0
         user_not_login = "show"
         user_login = "hidden"
     products =Product.objects.order_by("name")
-    return render(request,'search.html',{'searched':searched,'keys':keys,'products': products,'cartItems':cartItems})
+    return render(request,'search.html',{'searched':searched,'keys':keys,'products': products,'cartItems':cartItems,'user_not_login':user_not_login,'user_login':user_login})
 
 def product_home(request):
     products =Product.objects.order_by("name")

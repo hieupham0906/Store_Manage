@@ -2,10 +2,11 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from cart.models import Order
 
-from products.models import Product
+from products.models import Category, Product
 
 def home(request):
     products =Product.objects.order_by("name")
+    categories = Category.objects.all()
 
     if request.user.is_authenticated:
         customer = request.user
@@ -21,6 +22,6 @@ def home(request):
         cartItems = 0
         user_not_login = "show"
         user_login = "hidden"
-        context={'products': products,'cartItems':cartItems, 'user_not_login':user_not_login,'user_login':user_login}
+        context={'categories': categories,'products': products,'cartItems':cartItems, 'user_not_login':user_not_login,'user_login':user_login}
 
     return render(request,'homepage.html',context)

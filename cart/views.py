@@ -4,6 +4,8 @@ from products.models import Category, Product
 
 from .models import *
 def cart_home(request):
+    products =Product.objects.order_by("name")
+    categories = Category.objects.all()
     if request.user.is_authenticated:
         customer = request.user
         order, created =    Order.objects.get_or_create(customer=customer)
@@ -19,6 +21,6 @@ def cart_home(request):
         user_not_login = "show"
         user_login = "hidden"
 
-    context = {'items': items, 'order':order, 'cartItems': cartItems, 'user_not_login':user_not_login,'user_login':user_login}
+    context = {'categories': categories,'products': products,'items': items, 'order':order, 'cartItems': cartItems, 'user_not_login':user_not_login,'user_login':user_login}
     return render(request,'cart_home.html',context)
 

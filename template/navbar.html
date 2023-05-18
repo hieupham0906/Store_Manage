@@ -1,59 +1,58 @@
-{% comment %} <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="{% url 'home' %}">CART</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="{% url 'home' %}">
-              <i class="fa-sharp fa-solid fa-house"></i>
-              Home
-            </a>
-          </li>
-     </div>
-    </div>
-  </nav> {% endcomment %}
-    <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'home' %}">SHOPPING</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'product_home' %}">Product</a>
-            </li>
-             <li class="nav-item">
-              <a class="nav-link" href="{% url 'cart_home' %}">Cart</a>
-            </li>
-           
-            <div class="form-inline my-2 my-lg-0">
-              <a href="{% url 'cart_home' %}"> <img id="cart-icon" src='/static/image/cart.png'></a>
-              <p id="cart-total">{{cartItems}}</p>
-            </div>
 
-            <div class="form-inline my-2 my-lg-0" style="visibility: {{user_login}}">
-              <span>hello {{request.user}}!</span>
-              <span><a href="{% url 'logout'%}">Thoát</a></span>
-            </div>
-            <div class="form-inline my-2 my-lg-0" style="visibility: {{user_not_login}}">
-
-              <a class="nav-link" href="{% url 'login' %}">Đăng nhập</a>
-              <a class="nav-link" href="{% url 'register' %}">Đăng kí</a>
-            </div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'home' %}">SHOPPING</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'product_home' %}">Product</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'cart_home' %}">Cart</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Sản phẩm
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            {% for i in categories %}
+            <li><a class="dropdown-item" href="{% url 'category' %}?category={{i.name}}">{{i.name}}</a></li>
+            {% endfor %}
           </ul>
-          <form class="d-flex" method="POST" role="search" action="{%url 'search'%}">
-            {%csrf_token%}
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searched">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
-         
+        </li>
+        <div class="form-inline my-2 my-lg-0">
+          <a href="{% url 'cart_home' %}"> <img id="cart-icon" src="/static/image/cart.png"></a>
+          <p id="cart-total" class="text-light">{{cartItems}}</p>
         </div>
-      </div>
-    </nav>
+        <div class="form-inline my-2 my-lg-0" style="visibility: {{user_login}}">
+          <span class="text-light mt-3  ">Hello {{request.user}}!</span>
+          <span><a href="{% url 'logout'%}" class="text-light">Thoát</a></span>
+        </div>
+        
+        <div class="form-inline my-2 my-lg-0 user-login" style="visibility: {{user_not_login}}">
+          <a class="nav-link text-light" href="{% url 'login' %}">Đăng nhập</a>
+          <a class="nav-link text-light" href="{% url 'register' %}">Đăng kí</a>
+        </div>
+      </ul>
+      <form class="d-flex" method="POST" role="search" action="{%url 'search'%}">
+        {%csrf_token%}
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searched">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+
+</nav>
+
+<style>
+  .user-login {
+  margin-left: 10px;
+}
+
+</style>

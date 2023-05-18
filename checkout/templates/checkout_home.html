@@ -2,19 +2,19 @@
 {% load static %}
 {% block content %}
      <div class="row" style= "width:100%">
-		<div class="col-lg-6">
-			<div class="box-element" id="form-wrapper">
-				<form id="form">
-					<div id="user-info">
+		{% comment %} <div class="col-lg-6"> {% endcomment %}
+			{% comment %} <div class="box-element" id="form-wrapper">
+				<form id="form"> {% endcomment %}
+					{% comment %} <div id="user-info">
 						<div class="form-field">
 							<input required class="form-control" type="text" name="name" placeholder="Name..">
 						</div>
 						<div class="form-field">
 							<input required class="form-control" type="email" name="email" placeholder="Email..">
 						</div>
-					</div>
+					</div> {% endcomment %}
 					
-					<div id="shipping-info">
+					{% comment %} <div id="shipping-info">
 						<hr>
 						<p>Shipping Information:</p>
 						<hr>
@@ -33,19 +33,19 @@
 						<div class="form-field">
 							<input class="form-control" type="text" name="country" placeholder="Zip code..">
 						</div>
-					</div>
+					</div> {% endcomment %}
 
-					<hr>
+					{% comment %} <hr>
 					<input id="form-button" class="btn btn-success btn-block" type="submit" value="Continue">
 				</form>
-			</div>
+			</div> {% endcomment %}
 
-			<br>
+			{% comment %} <br>
 			<div class="box-element hidden" id="payment-info">
 				<small>Paypal Options</small>
-			</div>
+			</div> {% endcomment %}
 			
-		</div>
+		{% comment %} </div> {% endcomment %}
 
 		<div class="col-lg-6">
 			<div class="box-element">
