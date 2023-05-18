@@ -1,0 +1,48 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+<div class="height d-flex justify-content-center align-items-center">
+    
+    <div class="card p-3">
+        
+        <div class="d-flex justify-content-between align-items-center ">
+            <div class="mt-2">
+                <h4 class="text-uppercase">{{product.name}}</h4>
+                <div class="mt-5">
+                    <h5 class="text-uppercase mb-0">{{product.material}}</h5>
+                    <h1 class="main-heading mt-0">{{product.price}}</h1>
+                    <div class="d-flex flex-row user-ratings">
+                        <div class="ratings">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        </div>
+                        <h6 class="text-muted ml-1">4/5</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="image">
+                <img src="{{  product.image.url }}" width="200">
+            </div>
+        </div>
+        
+        <div class="d-flex justify-content-between align-items-center mt-2 mb-2">
+            <span> {{product.color}}</span>
+            <div class="colors">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+        </div>
+        
+        
+        <p>A great option weather you are at office or at home. </p>
+        
+        <button data-product={{product.id}} data-action= "add" class="btn btn-outline-secondary add-btn update-cart"> Thêm vào giỏ hàng</button>
+    </div>
+    
+</div>
+{% endblock %}

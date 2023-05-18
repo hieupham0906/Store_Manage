@@ -18,7 +18,7 @@
                 <!-- <hr> -->
 
                 <button data-product={{product.id}} data-action= "add" class="btn btn-outline-secondary add-btn update-cart"> Thêm vào giỏ hàng</button>
-                <a class="btn btn-outline-success" href="#">Xem</a>
+                <a data-product={{product.id}} data-action= "view" class="btn btn-outline-success" href="{% url 'product_detail' id=product.id%}">Xem</a>
                 <h4 style="display: inline-block; float: right"><strong>{{product.price}} VND</strong></h4>
             </div>
            
